@@ -17,7 +17,8 @@ class Command(BaseCommand):
         for facility in facilities:
             for variable in variables:
                 if variable.data_type == "string":
-                    r = random.randint(0, len(possible_strings))
+                    ri = random.randint(0, len(possible_strings)-1)
+                    r = possible_strings[ri]
                 elif variable.data_type == "integer":
                     r = random.randint(0, 100)
                 else:

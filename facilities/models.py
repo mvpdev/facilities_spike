@@ -2,11 +2,21 @@ from django.db import models
 
 class LGA(models.Model):
     name = models.CharField(max_length=20)
+    slug = models.SlugField()
+    
+    def facilities_by_type(self):
+        oput = []
+        for ftype in FacilityType.objects.all():
+            facilities = list(Facility.objects.filter(ftype=ftype, lga=self).all())
+            oput.append(
+                (ftype, facilities)
+            )
+        return oput
 
 class Facility(models.Model):
     name = models.CharField(max_length=20)
-    ftype = models.ForeignKey('FacilityType', null=True, related_name="facilities")
-    lga = models.ForeignKey(LGA, null=True, related_name="facilities")
+    ftype = models.ForeignKey('FacilityType', related_name="facilities")
+    lga = models.ForeignKey(LGA, related_name="facilities", null=True)
     
     def set_value_for_variable(self, variable, value):
         d, created = DataRecord.objects.get_or_create(variable=variable, facility=self)
@@ -72,6 +82,9 @@ class FacilityType(models.Model):
         """
         return [ftv.variable for ftv in self.expected_variables.order_by('display_order')]
 
+
+
+##this is not how i want to do this
 class FacilityTypeVariable(models.Model):
     """
     This model is *only* here to capture the order that variables should be displayed for each variable type.

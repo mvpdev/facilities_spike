@@ -4,13 +4,16 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>untitled</title>
-	<meta name="generator" content="TextMate http://macromates.com/">
-	<meta name="author" content="Alex Dorey">
-	<!-- Date: 2011-06-16 -->
+	<title>Facilities for Site: {{site_name}}</title>
 </head>
 <body>
-	{% for ftype in ftypes %}
+	<h1>
+		{{site.name}}
+	</h1>
+	<a href="/">
+		&laquo; Back to Home
+	</a>
+	{% for ftype, facilities in site.facilities_by_type %}
 	<h2>
 		{{ftype.name}}
 	</h2>
@@ -26,7 +29,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for facility in ftype.facilities.all %}
+			{% for facility in facilities %}
 			<tr>
 				<th scope="row">
 					{{facility.name}}

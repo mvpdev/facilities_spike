@@ -5,5 +5,6 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^facilities/(?P<site_id>\S+)$', 'facilities.views.facilities_for_site', name='facilities_for_site'),
     url(r'^$', 'facilities.views.home', name='home'),
 )

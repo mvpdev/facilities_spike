@@ -3,28 +3,32 @@
     "pk": 1,
     "model": "facilities.lga",
     "fields": {
-      "name": "New York"
+      "name": "New York",
+      "slug": "new_york"
     }
   },
   {
     "pk": 2,
     "model": "facilities.lga",
     "fields": {
-      "name": "Abuja, Nigeria"
+      "name": "Abuja, Nigeria",
+      "slug": "abuja"
     }
   },
   {
     "pk": 3,
     "model": "facilities.lga",
     "fields": {
-      "name": "North Pole"
+      "name": "North Pole",
+      "slug": "north_pole"
     }
   },
   {
     "pk": 4,
     "model": "facilities.lga",
     "fields": {
-      "name": "Corsica"
+      "name": "Corsica",
+      "slug": "corsica"
     }
   },
   {
@@ -85,7 +89,7 @@
     "pk": 7,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 1,
       "name": "Shake Shack: Abuja, Nigeria"
     }
@@ -94,7 +98,7 @@
     "pk": 8,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 1,
       "name": "McDonalds: Abuja, Nigeria"
     }
@@ -103,7 +107,7 @@
     "pk": 9,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 1,
       "name": "Five Guys: Abuja, Nigeria"
     }
@@ -112,7 +116,7 @@
     "pk": 10,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 1,
       "name": "Burger King: Abuja, Nigeria"
     }
@@ -121,7 +125,7 @@
     "pk": 11,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 2,
       "name": "Dominos: Abuja, Nigeria"
     }
@@ -130,7 +134,7 @@
     "pk": 12,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 2,
       "ftype": 2,
       "name": "Koronet: Abuja, Nigeria"
     }
@@ -139,7 +143,7 @@
     "pk": 13,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 1,
       "name": "Shake Shack: North Pole"
     }
@@ -148,7 +152,7 @@
     "pk": 14,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 1,
       "name": "McDonalds: North Pole"
     }
@@ -157,7 +161,7 @@
     "pk": 15,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 1,
       "name": "Five Guys: North Pole"
     }
@@ -166,7 +170,7 @@
     "pk": 16,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 1,
       "name": "Burger King: North Pole"
     }
@@ -175,7 +179,7 @@
     "pk": 17,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 2,
       "name": "Dominos: North Pole"
     }
@@ -184,7 +188,7 @@
     "pk": 18,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 3,
       "ftype": 2,
       "name": "Koronet: North Pole"
     }
@@ -193,7 +197,7 @@
     "pk": 19,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 1,
       "name": "Shake Shack: Corsica"
     }
@@ -202,7 +206,7 @@
     "pk": 20,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 1,
       "name": "McDonalds: Corsica"
     }
@@ -211,7 +215,7 @@
     "pk": 21,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 1,
       "name": "Five Guys: Corsica"
     }
@@ -220,7 +224,7 @@
     "pk": 22,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 1,
       "name": "Burger King: Corsica"
     }
@@ -229,7 +233,7 @@
     "pk": 23,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 2,
       "name": "Dominos: Corsica"
     }
@@ -238,7 +242,7 @@
     "pk": 24,
     "model": "facilities.facility",
     "fields": {
-      "lga": null,
+      "lga": 4,
       "ftype": 2,
       "name": "Koronet: Corsica"
     }

@@ -6,8 +6,13 @@ from facilities.models import *
 
 def home(request):
     context = RequestContext(request)
-    ftype = FacilityType.objects.all()[0]
-    # context.facilities = Facility.objects.all()
-    # context.variables = ftype.ordered_variables()
+    context.sites = LGA.objects.all()
+    return render_to_response("sites.html", context_instance=context)
+
+def facilities_for_site(request, site_id):
+    context = RequestContext(request)
+    lga = LGA.objects.get(slug=site_id)
+    context.site = lga
+    context.site_name = lga.name
     context.ftypes = list(FacilityType.objects.all())
     return render_to_response("list.html", context_instance=context)
