@@ -1,8 +1,12 @@
 from django.db import models
 
+class LGA(models.Model):
+    name = models.CharField(max_length=20)
+
 class Facility(models.Model):
     name = models.CharField(max_length=20)
     ftype = models.ForeignKey('FacilityType', null=True, related_name="facilities")
+    lga = models.ForeignKey(LGA, null=True, related_name="facilities")
     
     def set_value_for_variable(self, variable, value):
         d, created = DataRecord.objects.get_or_create(variable=variable, facility=self)

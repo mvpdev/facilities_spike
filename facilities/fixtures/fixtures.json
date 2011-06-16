@@ -1,50 +1,246 @@
 [
   {
     "pk": 1,
+    "model": "facilities.lga",
+    "fields": {
+      "name": "New York"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "facilities.lga",
+    "fields": {
+      "name": "Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "facilities.lga",
+    "fields": {
+      "name": "North Pole"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "facilities.lga",
+    "fields": {
+      "name": "Corsica"
+    }
+  },
+  {
+    "pk": 1,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 1,
-      "name": "Shake Shack"
+      "name": "Shake Shack: New York"
     }
   },
   {
     "pk": 2,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 1,
-      "name": "McDonalds"
+      "name": "McDonalds: New York"
     }
   },
   {
     "pk": 3,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 1,
-      "name": "Five Guys"
+      "name": "Five Guys: New York"
     }
   },
   {
     "pk": 4,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 1,
-      "name": "Burger King"
+      "name": "Burger King: New York"
     }
   },
   {
     "pk": 5,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 2,
-      "name": "Dominos"
+      "name": "Dominos: New York"
     }
   },
   {
     "pk": 6,
     "model": "facilities.facility",
     "fields": {
+      "lga": 1,
       "ftype": 2,
-      "name": "Koronet"
+      "name": "Koronet: New York"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Shake Shack: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "McDonalds: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Five Guys: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Burger King: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Dominos: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Koronet: Abuja, Nigeria"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Shake Shack: North Pole"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "McDonalds: North Pole"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Five Guys: North Pole"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Burger King: North Pole"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Dominos: North Pole"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Koronet: North Pole"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Shake Shack: Corsica"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "McDonalds: Corsica"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Five Guys: Corsica"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 1,
+      "name": "Burger King: Corsica"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Dominos: Corsica"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "facilities.facility",
+    "fields": {
+      "lga": null,
+      "ftype": 2,
+      "name": "Koronet: Corsica"
     }
   },
   {
