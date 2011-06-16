@@ -283,6 +283,12 @@
     "pk": 1,
     "model": "facilities.facilitytype",
     "fields": {
+      "variables": [
+        1,
+        2,
+        3
+      ],
+      "variable_order_json": "[1, 2, 3]",
       "name": "Hamburger Stores",
       "slug": "burgers"
     }
@@ -291,53 +297,13 @@
     "pk": 2,
     "model": "facilities.facilitytype",
     "fields": {
+      "variables": [
+        3,
+        4
+      ],
+      "variable_order_json": "[3, 4]",
       "name": "Pizza Restaurants",
       "slug": "pizza"
-    }
-  },
-  {
-    "pk": 1,
-    "model": "facilities.facilitytypevariable",
-    "fields": {
-      "variable": 1,
-      "display_order": 0,
-      "facility_type": 1
-    }
-  },
-  {
-    "pk": 2,
-    "model": "facilities.facilitytypevariable",
-    "fields": {
-      "variable": 2,
-      "display_order": 1,
-      "facility_type": 1
-    }
-  },
-  {
-    "pk": 3,
-    "model": "facilities.facilitytypevariable",
-    "fields": {
-      "variable": 3,
-      "display_order": 2,
-      "facility_type": 1
-    }
-  },
-  {
-    "pk": 4,
-    "model": "facilities.facilitytypevariable",
-    "fields": {
-      "variable": 3,
-      "display_order": 0,
-      "facility_type": 2
-    }
-  },
-  {
-    "pk": 5,
-    "model": "facilities.facilitytypevariable",
-    "fields": {
-      "variable": 4,
-      "display_order": 1,
-      "facility_type": 2
     }
   }
 ]

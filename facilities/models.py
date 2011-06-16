@@ -75,23 +75,42 @@ class FacilityType(models.Model):
     """
     name = models.CharField(max_length=20)
     slug = models.SlugField()
+    variables = models.ManyToManyField(Variable, related_name="facility_types")
+    variable_order_json = models.TextField(null=True)
     
     def ordered_variables(self):
         """
-        I don't know the _best_ way to do this, but we want an ordered list of variables.
+        Order of variables is something that came up *a lot* in MVIS.
+        
+        The (fugly) code below uses self.variables (m2m field) but orders
+        the results based on the JSON list of ids in "variable_order_json".
         """
-        return [ftv.variable for ftv in self.expected_variables.order_by('display_order')]
-
-
-
-##this is not how i want to do this
-class FacilityTypeVariable(models.Model):
-    """
-    This model is *only* here to capture the order that variables should be displayed for each variable type.
+        #I think it makes sense to pull all the variables into memory.
+        variables = list(self.variables.all())
+        if self.variable_order_json is None:
+            ordered_ids = []
+        else:
+            import json
+            ordered_ids = json.loads(self.variable_order_json)
+        #aack... fugly code below
+        ordered_variables = []
+        for vid in ordered_ids:
+            try:
+                found_variable = [z for z in variables if z.id==vid][0]
+                variables.pop(variables.index(found_variable))
+                ordered_variables.append(found_variable)
+            except IndexError:
+                pass
+        return ordered_variables + variables
     
-    We ran into this problem in MVIS. Originally, the order was put as a column in the Variable's model but
-    that had problems when different "FacilityTypes" (sectors) wanted variables in different orders.
-    """
-    facility_type = models.ForeignKey(FacilityType, related_name="expected_variables")
-    variable = models.ForeignKey(Variable)
-    display_order = models.IntegerField()
+    def set_variable_order(self, variable_list, autosave=True):
+        if len(variable_list)==0:
+            return
+        if isinstance(variable_list[0], int):
+            variable_id_list = variable_list
+        else:
+            variable_id_list = [v.id for v in variable_list]
+        import json
+        self.variable_order_json = json.dumps(variable_id_list)
+        if autosave:
+            self.save()
