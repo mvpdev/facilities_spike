@@ -30,6 +30,11 @@ class Variable(models.Model):
     data_type = models.CharField(max_length=20)
 
 class DataRecord(models.Model):
+    """
+    Not sure if we want to use different columns for data types or do
+    some django Meta:abstract=True stuff to have different subclasses of DataRecord
+    behave differently. For now, this works and is pretty clean.
+    """
     float_value = models.FloatField(null=True)
     text_value = models.CharField(null=True, max_length=20)
     variable = models.ForeignKey(Variable, related_name="data_records")
@@ -51,6 +56,9 @@ class DataRecord(models.Model):
 
 
 class FacilityType(models.Model):
+    """
+    A model to hold data specific to the FacilityType (...in MVIS this was the Sector)
+    """
     name = models.CharField(max_length=20)
     slug = models.SlugField()
     
@@ -61,6 +69,12 @@ class FacilityType(models.Model):
         return [ftv.variable for ftv in self.expected_variables.order_by('display_order')]
 
 class FacilityTypeVariable(models.Model):
+    """
+    This model is *only* here to capture the order that variables should be displayed for each variable type.
+    
+    We ran into this problem in MVIS. Originally, the order was put as a column in the Variable's model but
+    that had problems when different "FacilityTypes" (sectors) wanted variables in different orders.
+    """
     facility_type = models.ForeignKey(FacilityType, related_name="expected_variables")
     variable = models.ForeignKey(Variable)
     display_order = models.IntegerField()
