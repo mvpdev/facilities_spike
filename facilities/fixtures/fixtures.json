@@ -1,0 +1,143 @@
+[
+  {
+    "pk": 1,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 1,
+      "name": "Shake Shack"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 1,
+      "name": "McDonalds"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 1,
+      "name": "Five Guys"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 1,
+      "name": "Burger King"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 2,
+      "name": "Dominos"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "facilities.facility",
+    "fields": {
+      "ftype": 2,
+      "name": "Koronet"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "facilities.variable",
+    "fields": {
+      "name": "Number of Burgurs",
+      "data_type": "integer"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "facilities.variable",
+    "fields": {
+      "name": "Number of employees",
+      "data_type": "float"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "facilities.variable",
+    "fields": {
+      "name": "Sanitation Report Card Grade",
+      "data_type": "string"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "facilities.variable",
+    "fields": {
+      "name": "Number of Toppings",
+      "data_type": "integer"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "facilities.facilitytype",
+    "fields": {
+      "name": "Hamburger Stores",
+      "slug": "burgers"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "facilities.facilitytype",
+    "fields": {
+      "name": "Pizza Restaurants",
+      "slug": "pizza"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "facilities.facilitytypevariable",
+    "fields": {
+      "variable": 1,
+      "display_order": 0,
+      "facility_type": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "facilities.facilitytypevariable",
+    "fields": {
+      "variable": 2,
+      "display_order": 1,
+      "facility_type": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "facilities.facilitytypevariable",
+    "fields": {
+      "variable": 3,
+      "display_order": 2,
+      "facility_type": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "facilities.facilitytypevariable",
+    "fields": {
+      "variable": 3,
+      "display_order": 0,
+      "facility_type": 2
+    }
+  },
+  {
+    "pk": 5,
+    "model": "facilities.facilitytypevariable",
+    "fields": {
+      "variable": 4,
+      "display_order": 1,
+      "facility_type": 2
+    }
+  }
+]
