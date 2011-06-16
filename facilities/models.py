@@ -53,9 +53,17 @@ class DataRecord(models.Model):
     text_value = models.CharField(null=True, max_length=20)
     variable = models.ForeignKey(Variable, related_name="data_records")
     facility = models.ForeignKey(Facility, related_name="data_records")
+
+    _data_type = None
+    def get_data_type(self):
+        #caches the data_type in the python object.
+        if self._data_type is None:
+            self._data_type = self.variable.data_type
+        return self._data_type
+    data_type = property(get_data_type)
     
     def get_value(self):
-        if self.variable.data_type == "string":
+        if self.data_type == "string":
             return self.text_value
         else:
             return self.float_value
