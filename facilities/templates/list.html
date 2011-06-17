@@ -13,7 +13,7 @@
 	<a href="/">
 		&laquo; Back to Home
 	</a>
-	{% for ftype, facilities in site.facilities_by_type %}
+	{% for ftype, facilities, averages, totals in site.facilities_by_type %}
 	<h2>
 		{{ftype.name}}
 	</h2>
@@ -48,6 +48,40 @@
 			</tr>
 			{% endfor %}
 		</tbody>
+		<tfoot>
+			<tr>
+				<th scope="row" class="aggregates">
+					Average
+				</th>
+				{% for avg_data in averages %}
+				<td style="text-align:center">
+					{% if avg_data %}
+					<span data-variable-data-type="float" data-decimal-count="3" class="debug reformat-data">
+						{{avg_data}}
+					</span>
+					{% else %}
+					<span class="nil-value">&mdash;</span>
+					{% endif %}
+				</td>
+				{% endfor %}
+			</tr>
+			<tr>
+				<th scope="row" class="aggregates">
+					Total
+				</th>
+				{% for total in totals %}
+				<td style="text-align:center">
+					{% if total %}
+					<span data-variable-data-type="integer" class="reformat-data">
+						{{total}}
+					</span>
+					{% else %}
+					<span class="nil-value">&mdash;</span>
+					{% endif %}
+				</td>
+				{% endfor %}
+			</tr>
+		</tfoot>
 	</table>
 	{% endfor %}
 	<script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -58,8 +92,15 @@
 					var roundToDecimal = elem.data('decimalCount');
 					if(roundToDecimal===undefined) { return; }
 					var val = parseFloat(elem.text());
-					if(!isNaN(val)) { var x = Math.exp(10, parseInt(elem.data('decimalCount'))); }
-					$(this).addClass('reformatted');
+					console.log(val);
+					if(!isNaN(val)) {
+						console.log("decimal count is ", roundToDecimal)
+						var x = Math.pow(10, parseInt(roundToDecimal));
+						var n = Math.floor(val * x) / x;
+						console.log(n);
+						elem.text(''+ n);
+					}
+					elem.addClass('reformatted');
 				},
 				integer: function(elem){
 					var val = parseFloat(elem.text());

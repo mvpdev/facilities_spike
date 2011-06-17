@@ -8,8 +8,13 @@ class LGA(models.Model):
         oput = []
         for ftype in FacilityType.objects.all():
             facilities = list(Facility.objects.filter(ftype=ftype, lga=self).all())
+            averages = []
+            totals = []
+            for variable in ftype.ordered_variables:
+                averages.append(variable.calculate_average_for_lga(self))
+                totals.append(variable.calculate_total_for_lga(self))
             oput.append(
-                (ftype, facilities)
+                (ftype, facilities, averages, totals)
             )
         return oput
 
@@ -31,14 +36,34 @@ class Facility(models.Model):
         return variable
     
     def values_in_order(self):
-        return [self.get_value_for_variable(v) for v in self.ordered_variables()]
-    
-    def ordered_variables(self):
-        return self.ftype.ordered_variables()
+        return [self.get_value_for_variable(v) for v in self.ftype.ordered_variables]
 
 class Variable(models.Model):
     name = models.CharField(max_length=20)
     data_type = models.CharField(max_length=20)
+    
+    def calculate_total_for_lga(self, lga):
+        if self.data_type == "string":
+            return None
+        else:
+            records = DataRecord.objects.filter(variable=self, facility__lga=lga)
+            tot = 0
+            for record in records:
+                tot += record.value
+            return tot
+    
+    def calculate_average_for_lga(self, lga):
+        if self.data_type == "string":
+            return None
+        else:
+            records = DataRecord.objects.filter(variable=self, facility__lga=lga)
+            count = records.count()
+            if count == 0:
+                return 0
+            tot = 0
+            for record in records:
+                tot += record.value
+            return tot / count
 
 class DataRecord(models.Model):
     """
@@ -83,13 +108,16 @@ class FacilityType(models.Model):
     variables = models.ManyToManyField(Variable, related_name="facility_types")
     variable_order_json = models.TextField(null=True)
     
-    def ordered_variables(self):
+    _ordered_variables = None
+    def get_ordered_variables(self):
         """
         Order of variables is something that came up *a lot* in MVIS.
         
         The (fugly) code below uses self.variables (m2m field) but orders
         the results based on the JSON list of ids in "variable_order_json".
         """
+        if self._ordered_variables is not None:
+            return self._ordered_variables
         #I think it makes sense to pull all the variables into memory.
         variables = list(self.variables.all())
         if self.variable_order_json is None:
@@ -98,15 +126,17 @@ class FacilityType(models.Model):
             import json
             ordered_ids = json.loads(self.variable_order_json)
         #aack... fugly code below
-        ordered_variables = []
+        n_ordered_variables = []
         for vid in ordered_ids:
             try:
                 found_variable = [z for z in variables if z.id==vid][0]
                 variables.pop(variables.index(found_variable))
-                ordered_variables.append(found_variable)
+                n_ordered_variables.append(found_variable)
             except IndexError:
                 pass
-        return ordered_variables + variables
+        self._ordered_variables = n_ordered_variables + variables
+        return self._ordered_variables
+    ordered_variables = property(get_ordered_variables)
     
     def set_variable_order(self, variable_list, autosave=True):
         if len(variable_list)==0:
@@ -117,5 +147,6 @@ class FacilityType(models.Model):
             variable_id_list = [v.id for v in variable_list]
         import json
         self.variable_order_json = json.dumps(variable_id_list)
+        self._ordered_variables = None
         if autosave:
             self.save()
