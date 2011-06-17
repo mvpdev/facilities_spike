@@ -11,7 +11,7 @@
     "pk": 2,
     "model": "facilities.lga",
     "fields": {
-      "name": "Abuja, Nigeria",
+      "name": "Abuja",
       "slug": "abuja"
     }
   },
@@ -27,8 +27,8 @@
     "pk": 4,
     "model": "facilities.lga",
     "fields": {
-      "name": "Corsica",
-      "slug": "corsica"
+      "name": "Marseille",
+      "slug": "marseille"
     }
   },
   {
@@ -37,7 +37,7 @@
     "fields": {
       "lga": 1,
       "ftype": 1,
-      "name": "Shake Shack: New York"
+      "name": "Shake Shack"
     }
   },
   {
@@ -46,7 +46,7 @@
     "fields": {
       "lga": 1,
       "ftype": 1,
-      "name": "McDonalds: New York"
+      "name": "Big Daddy's"
     }
   },
   {
@@ -55,7 +55,7 @@
     "fields": {
       "lga": 1,
       "ftype": 1,
-      "name": "Five Guys: New York"
+      "name": "Five Guys"
     }
   },
   {
@@ -64,7 +64,7 @@
     "fields": {
       "lga": 1,
       "ftype": 1,
-      "name": "Burger King: New York"
+      "name": "Burger King"
     }
   },
   {
@@ -73,7 +73,7 @@
     "fields": {
       "lga": 1,
       "ftype": 2,
-      "name": "Dominos: New York"
+      "name": "Famiglia's"
     }
   },
   {
@@ -82,7 +82,7 @@
     "fields": {
       "lga": 1,
       "ftype": 2,
-      "name": "Koronet: New York"
+      "name": "Koronet"
     }
   },
   {
@@ -100,7 +100,7 @@
     "fields": {
       "lga": 2,
       "ftype": 1,
-      "name": "McDonalds: Abuja, Nigeria"
+      "name": "Abuja Burgers"
     }
   },
   {
@@ -109,7 +109,7 @@
     "fields": {
       "lga": 2,
       "ftype": 1,
-      "name": "Five Guys: Abuja, Nigeria"
+      "name": "Mama Cass"
     }
   },
   {
@@ -118,7 +118,7 @@
     "fields": {
       "lga": 2,
       "ftype": 1,
-      "name": "Burger King: Abuja, Nigeria"
+      "name": "FCT Burgers"
     }
   },
   {
@@ -127,7 +127,7 @@
     "fields": {
       "lga": 2,
       "ftype": 2,
-      "name": "Dominos: Abuja, Nigeria"
+      "name": "Your Pizza is FCTed"
     }
   },
   {
@@ -136,7 +136,7 @@
     "fields": {
       "lga": 2,
       "ftype": 2,
-      "name": "Koronet: Abuja, Nigeria"
+      "name": "Pizzabuja"
     }
   },
   {
@@ -145,7 +145,7 @@
     "fields": {
       "lga": 3,
       "ftype": 1,
-      "name": "Shake Shack: North Pole"
+      "name": "Santa's In N Out Burger"
     }
   },
   {
@@ -154,25 +154,7 @@
     "fields": {
       "lga": 3,
       "ftype": 1,
-      "name": "McDonalds: North Pole"
-    }
-  },
-  {
-    "pk": 15,
-    "model": "facilities.facility",
-    "fields": {
-      "lga": 3,
-      "ftype": 1,
-      "name": "Five Guys: North Pole"
-    }
-  },
-  {
-    "pk": 16,
-    "model": "facilities.facility",
-    "fields": {
-      "lga": 3,
-      "ftype": 1,
-      "name": "Burger King: North Pole"
+      "name": "Elf Burger"
     }
   },
   {
@@ -181,7 +163,7 @@
     "fields": {
       "lga": 3,
       "ftype": 2,
-      "name": "Dominos: North Pole"
+      "name": "Reindeer Slice"
     }
   },
   {
@@ -190,7 +172,7 @@
     "fields": {
       "lga": 3,
       "ftype": 2,
-      "name": "Koronet: North Pole"
+      "name": "Rudolph's Favorite Pizza"
     }
   },
   {
@@ -199,7 +181,7 @@
     "fields": {
       "lga": 4,
       "ftype": 1,
-      "name": "Shake Shack: Corsica"
+      "name": "Le Shack de Shake"
     }
   },
   {
@@ -208,7 +190,7 @@
     "fields": {
       "lga": 4,
       "ftype": 1,
-      "name": "McDonalds: Corsica"
+      "name": "MacDo's"
     }
   },
   {
@@ -217,7 +199,7 @@
     "fields": {
       "lga": 4,
       "ftype": 1,
-      "name": "Five Guys: Corsica"
+      "name": "5 Hommes"
     }
   },
   {
@@ -226,7 +208,7 @@
     "fields": {
       "lga": 4,
       "ftype": 1,
-      "name": "Burger King: Corsica"
+      "name": "Le Burger King"
     }
   },
   {
@@ -235,7 +217,7 @@
     "fields": {
       "lga": 4,
       "ftype": 2,
-      "name": "Dominos: Corsica"
+      "name": "Le Pizza Éxtrordinaire"
     }
   },
   {
@@ -244,14 +226,14 @@
     "fields": {
       "lga": 4,
       "ftype": 2,
-      "name": "Koronet: Corsica"
+      "name": "Les Siciliennes"
     }
   },
   {
     "pk": 1,
     "model": "facilities.variable",
     "fields": {
-      "name": "Number of Burgurs",
+      "name": "Number of Burgers",
       "data_type": "integer"
     }
   },
@@ -267,7 +249,7 @@
     "pk": 3,
     "model": "facilities.variable",
     "fields": {
-      "name": "Sanitation Report Card Grade",
+      "name": "DoH Grade",
       "data_type": "string"
     }
   },
