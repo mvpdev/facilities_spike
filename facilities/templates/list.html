@@ -5,6 +5,30 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Facilities for Site: {{site_name}}</title>
+	<style type="text/css" media="screen">
+		body {
+			font-family: Arial;
+		}
+		.data {
+			text-align: center;
+		}
+		.agg {
+			font-size: smaller;
+			text-align: center;
+			background-color: #eee;
+		}
+		th { text-align: left; }
+		th.agg {
+			background-color: transparent;
+			text-transform: uppercase;
+			text-align: right;
+			opacity: 0.6;
+		}
+		th.agg:after { content: ':'; }
+		tr:hover th.agg {
+			opacity: 1;
+		}
+	</style>
 </head>
 <body>
 	<h1>
@@ -35,7 +59,7 @@
 					{{facility.name}}
 				</th>
 				{% for data in facility.values_in_order %}
-				<td style="text-align: center">
+				<td class="data">
 					{% if data %}
 					<span data-variable-data-type="{{data.data_type}}" class="reformat-data">
 						{{ data.value }}
@@ -50,11 +74,11 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th scope="row" class="aggregates">
+				<th scope="row" class="aggregates agg">
 					Average
 				</th>
 				{% for avg_data in averages %}
-				<td style="text-align:center">
+				<td class="avg agg">
 					{% if avg_data %}
 					<span data-variable-data-type="float" data-decimal-count="3" class="debug reformat-data">
 						{{avg_data}}
@@ -66,11 +90,11 @@
 				{% endfor %}
 			</tr>
 			<tr>
-				<th scope="row" class="aggregates">
+				<th scope="row" class="aggregates agg">
 					Total
 				</th>
 				{% for total in totals %}
-				<td style="text-align:center">
+				<td class="tot agg">
 					{% if total %}
 					<span data-variable-data-type="integer" class="reformat-data">
 						{{total}}
