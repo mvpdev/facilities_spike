@@ -7,8 +7,10 @@
 	<title>Sites</title>
 </head>
 <body>
-	{% for site in sites %}
-	<li><a href="/facilities/{{site.slug}}">{{site.name}}</a>
-	{% endfor %}
+	<ul>
+		{% for site in sites %}
+		<li><a href="/facilities/{{site.slug}}">{{site.name}}</a>
+		{% endfor %}
+	</ul>
 </body>
 </html>

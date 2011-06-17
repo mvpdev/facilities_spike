@@ -37,7 +37,9 @@
 				{% for data in facility.values_in_order %}
 				<td style="text-align: center">
 					{% if data %}
-					{{ data.value }}
+					<span data-variable-data-type="{{data.data_type}}" class="reformat-data">
+						{{ data.value }}
+					</span>
 					{% else %}
 					<span class="nil-value">&mdash;</span>
 					{% endif %}
@@ -48,5 +50,33 @@
 		</tbody>
 	</table>
 	{% endfor %}
+	<script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		var reformatDataSpans = (function($){
+			var reformatters = {
+				float: function(elem){
+					var roundToDecimal = elem.data('decimalCount');
+					if(roundToDecimal===undefined) { return; }
+					var val = parseFloat(elem.text());
+					if(!isNaN(val)) { var x = Math.exp(10, parseInt(elem.data('decimalCount'))); }
+				},
+				integer: function(elem){
+					var val = parseFloat(elem.text());
+					if(!isNaN(val)){ elem.text(Math.floor(val))}
+				}
+			}
+			function reformatAllSpans(){
+				$('span.reformat-data').each(function(){
+					var dt = $(this).data('variableDataType');
+					if(dt) {
+						reformatters[dt] !== undefined && reformatters[dt]($(this));
+					}
+				});
+			}
+			return reformatAllSpans;
+		})(jQuery);
+		
+		reformatDataSpans();
+	</script>
 </body>
 </html>
