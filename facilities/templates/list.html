@@ -96,7 +96,7 @@
 					if(!isNaN(val)) {
 						console.log("decimal count is ", roundToDecimal)
 						var x = Math.pow(10, parseInt(roundToDecimal));
-						var n = Math.floor(val * x) / x;
+						var n = Math.round(val * x) / x;
 						console.log(n);
 						elem.text(''+ n);
 					}
