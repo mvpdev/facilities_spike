@@ -31,10 +31,7 @@ class Facility(models.Model):
         return variable
     
     def values_in_order(self):
-        var_list = []
-        for v in self.ordered_variables():
-            var_list.append(self.get_value_for_variable(v))
-        return var_list
+        return [self.get_value_for_variable(v) for v in self.ordered_variables()]
     
     def ordered_variables(self):
         return self.ftype.ordered_variables()
