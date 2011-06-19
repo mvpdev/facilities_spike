@@ -23,20 +23,20 @@ class Facility(models.Model):
     ftype = models.ForeignKey('FacilityType', related_name="facilities")
     lga = models.ForeignKey(LGA, related_name="facilities", null=True)
     
-    def set_value_for_variable(self, variable, value):
-        d, created = DataRecord.objects.get_or_create(variable=variable, facility=self)
+    def set_value_for_variable_and_date(self, variable, date, value):
+        d, created = DataRecord.objects.get_or_create(variable=variable, facility=self, date_value=date)
         d.value=value
         d.save()
     
-    def get_value_for_variable(self, variable):
+    def get_latest_value_for_variable(self, variable):
         try:
-            variable = DataRecord.objects.get(facility=self, variable=variable)
-        except DataRecord.DoesNotExist:
+            variable = DataRecord.objects.filter(facility=self, variable=variable).order_by('-date_value')[0]
+        except IndexError:
             variable = None
         return variable
     
     def values_in_order(self):
-        return [self.get_value_for_variable(v) for v in self.ftype.ordered_variables]
+        return [self.get_latest_value_for_variable(v) for v in self.ftype.ordered_variables]
 
 class Variable(models.Model):
     name = models.CharField(max_length=20)
@@ -75,6 +75,7 @@ class DataRecord(models.Model):
     text_value = models.CharField(null=True, max_length=20)
     variable = models.ForeignKey(Variable, related_name="data_records")
     facility = models.ForeignKey(Facility, related_name="data_records")
+    date_value = models.DateField(null=True)
 
     _data_type = None
     def get_data_type(self):
@@ -89,6 +90,12 @@ class DataRecord(models.Model):
             return self.text_value
         else:
             return self.float_value
+    
+    def date_string(self):
+        if self.date_value is None:
+            return "No date"
+        else:
+            return self.date_value.strftime("%D")
     
     def set_value(self, val):
         if self.variable.data_type == "string":

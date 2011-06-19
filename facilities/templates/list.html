@@ -61,9 +61,15 @@
 				{% for data in facility.values_in_order %}
 				<td class="data">
 					{% if data %}
-					<span data-variable-data-type="{{data.data_type}}" class="reformat-data">
-						{{ data.value }}
-					</span>
+					<p>
+						<span class="date">
+							{{ data.date_string }}
+						</span>
+						<br>
+						<span data-variable-data-type="{{data.data_type}}" class="reformat-data">
+								{{ data.value }}
+						</span>
+					</p>
 					{% else %}
 					<span class="nil-value">&mdash;</span>
 					{% endif %}
