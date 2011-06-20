@@ -4,6 +4,10 @@ class LGA(models.Model):
     name = models.CharField(max_length=20)
     slug = models.SlugField()
     
+    def dates(self):
+        drs = DataRecord.objects.filter(facility__lga=self).values('date_value').distinct()
+        return [d['date_value'] for d in drs]
+    
     def facilities_by_type(self):
         oput = []
         for ftype in FacilityType.objects.all():
@@ -15,6 +19,22 @@ class LGA(models.Model):
                 totals.append(variable.calculate_total_for_lga(self))
             oput.append(
                 (ftype, facilities, averages, totals)
+            )
+        return oput
+
+    def facility_data_by_date(self):
+        #kindof a hack to get dates displaying in tables
+        return [(date, self._ftype_data_for_date(date)) for date in self.dates()]
+    
+    def _ftype_data_for_date(self, date):
+        #kindof a hack to get dates displaying in tables
+        oput = []
+        for ftype in FacilityType.objects.all():
+            oput.append(
+                (ftype.name, ftype.slug,
+                    ftype.ordered_variables,
+                    [(f.name, f._ordered_records_for_date(date)) for f in self.facilities.filter(ftype=ftype).all()]
+                    )
             )
         return oput
 
@@ -35,8 +55,24 @@ class Facility(models.Model):
             variable = None
         return variable
     
+    def _ordered_records_for_date(self, date):
+        #kindof a hack to get dates displaying in tables
+        variables = self.ftype.ordered_variables
+        records = []
+        for v in variables:
+            try:
+                dr = DataRecord.objects.get(date_value=date, variable=v, facility=self)
+            except DataRecord.DoesNotExist:
+                dr = None
+            records.append(dr)
+        return records
+    
     def values_in_order(self):
         return [self.get_latest_value_for_variable(v) for v in self.ftype.ordered_variables]
+    
+    def dates(self):
+        drs = DataRecord.objects.filter(facility=self).values('date_value').distinct()
+        return [d['date_value'] for d in drs]
 
 class Variable(models.Model):
     name = models.CharField(max_length=20)

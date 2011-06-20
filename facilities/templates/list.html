@@ -18,102 +18,71 @@
 			background-color: #eee;
 		}
 		th { text-align: left; }
-		th.agg {
-			background-color: transparent;
-			text-transform: uppercase;
-			text-align: right;
-			opacity: 0.6;
-		}
-		th.agg:after { content: ':'; }
-		tr:hover th.agg {
-			opacity: 1;
-		}
 	</style>
 </head>
 <body>
 	<h1>
 		{{site.name}}
 	</h1>
-	<a href="/">
-		&laquo; Back to Home
-	</a>
-	{% for ftype, facilities, averages, totals in site.facilities_by_type %}
+	<a href="/">&laquo; Back to Home</a>
+	<hr>
 	<h2>
-		{{ftype.name}}
+		Dates:
 	</h2>
-	<table>
-		<thead>
-			<tr>
-				<th></th>
-				{% for variable in ftype.ordered_variables %}
-				<th>
-					{{variable.name}}
-				</th>
-				{% endfor %}
-			</tr>
-		</thead>
-		<tbody>
-			{% for facility in facilities %}
-			<tr>
-				<th scope="row">
-					{{facility.name}}
-				</th>
-				{% for data in facility.values_in_order %}
-				<td class="data">
-					{% if data %}
-					<p>
-						<span class="date">
-							{{ data.date_string }}
-						</span>
-						<br>
-						<span data-variable-data-type="{{data.data_type}}" class="reformat-data">
+	<ul>
+		{% for date in site.dates %}
+		<li>
+			{{date}}
+		</li>
+		{% endfor %}
+	</ul>
+	{% for date, ftype_data in site.facility_data_by_date %}
+	<div>
+		<h2>
+			{{date}}
+		</h2>
+		{% for ftype_name, ftype_slug, ft_variables, facilities in ftype_data %}
+		<div>
+			<h3>
+				{{ftype_name}}
+			</h3>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						{% for variable in ft_variables %}
+						<th>
+							{{variable.name}}
+						</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for facility_name, values_array in facilities %}
+					<tr>
+						<th scope="row">
+							{{facility_name}}
+						</th>
+						{% for data in values_array %}
+						<td class="data">
+							{% if data %}
+							<span data-variable-data-type="((data.data_type))" class="reformat-data">
 								{{ data.value }}
-						</span>
-					</p>
-					{% else %}
-					<span class="nil-value">&mdash;</span>
-					{% endif %}
-				</td>
-				{% endfor %}
-			</tr>
-			{% endfor %}
-		</tbody>
-		<tfoot>
-			<tr>
-				<th scope="row" class="aggregates agg">
-					Average
-				</th>
-				{% for avg_data in averages %}
-				<td class="avg agg">
-					{% if avg_data %}
-					<span data-variable-data-type="float" data-decimal-count="3" class="debug reformat-data">
-						{{avg_data}}
-					</span>
-					{% else %}
-					<span class="nil-value">&mdash;</span>
-					{% endif %}
-				</td>
-				{% endfor %}
-			</tr>
-			<tr>
-				<th scope="row" class="aggregates agg">
-					Total
-				</th>
-				{% for total in totals %}
-				<td class="tot agg">
-					{% if total %}
-					<span data-variable-data-type="integer" class="reformat-data">
-						{{total}}
-					</span>
-					{% else %}
-					<span class="nil-value">&mdash;</span>
-					{% endif %}
-				</td>
-				{% endfor %}
-			</tr>
-		</tfoot>
-	</table>
+							</span>
+							{% else %}
+							<span class="nil-value">&mdash;</span>
+							{% endif %}
+						</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endfor %}
+	</div>
 	{% endfor %}
+	<!--
 	<script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
 		var reformatDataSpans = (function($){
@@ -153,5 +122,6 @@
 		
 		reformatDataSpans();
 	</script>
+	-->
 </body>
 </html>
